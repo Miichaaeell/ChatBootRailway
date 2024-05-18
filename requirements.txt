@@ -11,6 +11,7 @@ click==8.1.7
 cloud-sql-python-connector==1.9.2
 colorama==0.4.6
 cryptography==42.0.7
+docker==7.0.0
 Flask==3.0.3
 frozenlist==1.4.1
 google-auth==2.29.0
@@ -28,6 +29,7 @@ pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pycparser==2.22
 PyJWT==2.8.0
+pywin32==306
 requests==2.31.0
 rsa==4.9
 twilio==9.0.5
