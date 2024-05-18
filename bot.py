@@ -5,7 +5,7 @@ import gerencia
 app = Flask(__name__)
 
 
-@app.route('/webhook/michaelandrew', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def bot():
     msg_cliente = request.values
     usuario = gerencia.cadastrar_usuario(msg_cliente)
