@@ -59,4 +59,3 @@ def consultar_email(telefone):
     return str(email)
     cursor.close()
     conexao.close()
-    
