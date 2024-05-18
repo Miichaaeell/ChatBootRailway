@@ -1,5 +1,4 @@
 import respostas
-from funcoesbd import cadastro
 
 
 class clientes:
@@ -11,8 +10,8 @@ class clientes:
 
 def cadastrar_usuario(dados):
     cliente = clientes(dados['ProfileName'], dados['From'][10:], dados['Body'].lower())
-    cadastrado = cadastro(cliente.nome, cliente.telefone)
-    return cliente, cadastrado
+    # cadastrado = cadastro(cliente.nome, cliente.telefone)
+    return cliente
 
 
 def reply(usuario, validacao):
