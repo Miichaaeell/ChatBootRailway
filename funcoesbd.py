@@ -1,12 +1,16 @@
 import mysql.connector
+import os
+
+key = os.getenv("BD_KEY")
 
 
 def cadastro(nome, telefone):
     conexao = mysql.connector.connect(
-        host='localhost',
+        host='monorail.proxy.rlwy.net',
+        port='34425',
         user='root',
-        password='',
-        database='bootatendimento',
+        password=f'{key}',
+        database='railway',
     )
     cursor = conexao.cursor()
     comando1 = f'SELECT Nome, Telefone FROM clientes'
@@ -29,14 +33,15 @@ def cadastro(nome, telefone):
 
 def cadastrar_email(email, telefone):
     conexao = mysql.connector.connect(
-        host='localhost',
+        host='monorail.proxy.rlwy.net',
+        port='34425',
         user='root',
-        password='',
-        database='bootatendimento',
+        password=f'{key}',
+        database='railway',
     )
 
     cursor = conexao.cursor()
-    comando = f"UPDATE `bootatendimento`.`clientes` SET `Email` = '{email[6:].strip()}' WHERE (`Telefone` = '{telefone}')"
+    comando = f"UPDATE `railway`.`clientes` SET `Email` = '{email[6:].strip()}' WHERE (`Telefone` = '{telefone}')"
     cursor.execute(comando)
     conexao.commit()
     conexao.close()
@@ -45,10 +50,11 @@ def cadastrar_email(email, telefone):
 
 def consultar_email(telefone):
     conexao = mysql.connector.connect(
-        host='localhost',
+        host='monorail.proxy.rlwy.net',
+        port='34425',
         user='root',
-        password='',
-        database='bootatendimento',
+        password=f'{key}',
+        database='railway',
     )
     cursor = conexao.cursor()
     comando = f'SELECT Email, Telefone FROM clientes WHERE Telefone = {telefone}'
