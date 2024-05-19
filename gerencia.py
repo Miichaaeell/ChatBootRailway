@@ -12,7 +12,7 @@ class clientes:
 def cadastrar_usuario(dados):
     cliente = clientes(dados['ProfileName'], dados['From'][10:], dados['Body'].lower())
     cadastrado = cadastro(cliente.nome, cliente.telefone)
-    return cliente
+    return cliente, cadastrado
 
 
 def reply(usuario, validacao):
