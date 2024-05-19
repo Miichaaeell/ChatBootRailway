@@ -20,7 +20,7 @@ def reply(usuario, validacao):
         return respostas.boas_vindas(usuario.nome, validacao)
     elif usuario.msg in 'orçamento , orcamento':
         return respostas.orcamento1(usuario.nome)
-    elif 'email' in usuario.msg:
+    elif 'email:' in usuario.msg:
         return respostas.orcamento(usuario.nome, usuario.msg, usuario.telefone)
     elif usuario.msg in 'serviços servico':
         return respostas.servicos(usuario.nome)

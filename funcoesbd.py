@@ -73,20 +73,19 @@ def consultar_email(telefone):
 
 def enviar_email(nome='', telefone='', msg=''):
     adress = consultar_email(telefone)
-    corpo_email = f"""
-    Olá {nome}, seu pedido de orçamento foi realizado com Sucesso!
-    {msg}
+    corpo_email = f"""Olá {nome}, seu pedido de orçamento foi realizado com Sucesso!
+    \nDetalhes da solicitação:\n--> {msg}\n\nAtt.\nMichael Dev
     """
     msg = email.message.Message()
     msg['Subject'] = 'Confirmação do pedido de orçamento - no reply'
     msg['From'] = f'{my_email}'
-    msg['To'] = f'{adress}'
+    msg['To'] = f'{adress}, {my_email}'
     password = f'{key_email}'
-    msg.add_header('Content-Type', 'Text/html')
+    msg.add_header('Content-Type', 'text')
     msg.set_payload(corpo_email)
     s = smtplib.SMTP('smtp.gmail.com:587')
     s.starttls()
     s.login(msg['From'], password)
-    print(msg['To'])
     s.sendmail(msg['From'], msg['To'], msg.as_string().encode('utf-8'))
+    print(msg['To'])
     print('Email enviado com sucesso!')
