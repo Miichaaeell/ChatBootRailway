@@ -1,4 +1,4 @@
-from funcoesbd import cadastrar_email, consultar_email
+from funcoesbd import cadastrar_email, consultar_email, enviar_email
 
 
 def boas_vindas(nome='', validacao='false'):
@@ -30,8 +30,9 @@ def servicos(nome=''):
         f'\n\n Se desejar realizar um orçamento, só me enviar "orçamento" que já daremos início')
 
 
-def despedida(nome, telefome):
-    email = consultar_email(telefome)
+def despedida(nome, telefone, msg=''):
+    email = consultar_email(telefone)
+    enviar_email(nome, telefone, msg)
     return (
         f'Perfeito! {nome} iremos analisar a sua solicitação e retornaremos o contato com seu orçamento no e-mail {email}'
         f' então fique de olho, se precisarmos de mais algum detalhe também entraremos em contato pelo e-mail.\n\nAtt, \nMichael Dev ')

@@ -25,6 +25,6 @@ def reply(usuario, validacao):
     elif usuario.msg in 'serviços servico':
         return respostas.servicos(usuario.nome)
     elif 'automação' in usuario.msg or 'automacao' in usuario.msg or 'sistema' in usuario.msg:
-        return respostas.despedida(usuario.nome, usuario.telefone)
+        return respostas.despedida(usuario.nome, usuario.telefone, usuario.msg)
     else:
         return 'Desculpe, mas faltou alguma informação, poderia me enviar os dados novamente, lembrando que todas as informações são essências para nosso atendimento'

@@ -1,7 +1,11 @@
 import mysql.connector
 import os
+import smtplib
+import email.message
 
-key = os.getenv("BD_KEY")
+key_email = os.getenv("EMAIL_KEY")
+my_email = os.getenv("MY_EMAIL")
+key_bd = os.getenv("BD_KEY")
 
 
 def cadastro(nome, telefone):
@@ -9,7 +13,7 @@ def cadastro(nome, telefone):
         host='monorail.proxy.rlwy.net',
         port='34425',
         user='root',
-        password=f'{key}',
+        password=f'{key_bd}',
         database='railway',
     )
     cursor = conexao.cursor()
@@ -36,7 +40,7 @@ def cadastrar_email(email, telefone):
         host='monorail.proxy.rlwy.net',
         port='34425',
         user='root',
-        password=f'{key}',
+        password=f'{key_bd}',
         database='railway',
     )
 
@@ -53,7 +57,7 @@ def consultar_email(telefone):
         host='monorail.proxy.rlwy.net',
         port='34425',
         user='root',
-        password=f'{key}',
+        password=f'{key_bd}',
         database='railway',
     )
     cursor = conexao.cursor()
@@ -65,3 +69,23 @@ def consultar_email(telefone):
     return str(email)
     cursor.close()
     conexao.close()
+
+
+def enviar_email(nome='', telefone='', msg=''):
+    adress = consultar_email(telefone)
+    corpo_email = f"""
+    Olá {nome}, seu pedido de orçamento foi realizado com Sucesso!
+    {msg}
+    """
+    msg = email.message.Message()
+    msg['Subject'] = 'Confirmação do pedido de orçamento - no reply'
+    msg['From'] = f'{my_email}'
+    msg['To'] = f'{adress}'
+    password = f'{key_email}'
+    msg.add_header('Content-Type', 'Text/html')
+    msg.set_playload(corpo_email)
+    s = smtplib.SMTP('smtp.gmail.com:587')
+    s.starttls()
+    s.login(msg['From'], password)
+    s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+    print('Email enviado com sucesso!')
