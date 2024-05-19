@@ -83,7 +83,7 @@ def enviar_email(nome='', telefone='', msg=''):
     msg['To'] = f'{adress}'
     password = f'{key_email}'
     msg.add_header('Content-Type', 'Text/html')
-    msg.set_playload(corpo_email)
+    msg.set_payload(corpo_email)
     s = smtplib.SMTP('smtp.gmail.com:587')
     s.starttls()
     s.login(msg['From'], password)
