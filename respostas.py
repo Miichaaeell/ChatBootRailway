@@ -1,3 +1,6 @@
+from funcoesbd import cadastrar_email, consultar_email
+
+
 def boas_vindas(nome='', validacao='false'):
     if 'verdadeiro' in validacao:
         return (f'Olá {nome}, que bom te ver novamente por aqui, tudo bem? em que posso te ajudar hoje?'
@@ -8,7 +11,7 @@ def boas_vindas(nome='', validacao='false'):
 
 
 def orcamento(nome, email, telefone):
-    # cadastrar_email(email, telefone)
+    cadastrar_email(email, telefone)
     return (f'{nome}, estamos quase lá, só mais algumas informações'
             f'\n Tipo de projeto (sistema ou automação)**: \n Nome completo:'
             f'\n descreva com o máximo de detalhes possivel o que deseja fazer:')
@@ -28,7 +31,7 @@ def servicos(nome=''):
 
 
 def despedida(nome, telefome):
-    # email = consultar_email(telefome)
+    email = consultar_email(telefome)
     return (
         f'Perfeito! {nome} iremos analisar a sua solicitação e retornaremos o contato com seu orçamento no e-mail {email}'
         f' então fique de olho, se precisarmos de mais algum detalhe também entraremos em contato pelo e-mail.\n\n Att, \nMichael Dev ')
